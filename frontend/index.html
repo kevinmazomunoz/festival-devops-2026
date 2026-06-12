@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pacific DevOps Music Fest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>🎶 Pacific DevOps Music Fest</h1>
+  <p>Fecha: 15 Agosto 2026</p>
+
+  <h2>Artistas</h2>
+  <ul>
+    <li>DJ Docker</li>
+    <li>Flask Beats</li>
+    <li>Kubernetes Live</li>
+  </ul>
+
+  <button onclick="getAPI()">Comprar boleta</button>
+
+  <pre id="output">Esperando datos...</pre>
+
+  <script>
+    async function getAPI() {
+      try {
+        const res = await fetch("http://localhost:5000/api/festival");
+        const data = await res.json();
+
+        document.getElementById("output").innerText =
+          JSON.stringify(data, null, 2);
+
+      } catch (error) {
+        console.error(error);
+        document.getElementById("output").innerText =
+          "❌ Error conectando con la API";
+      }
+    }
+  </script>
+
+</body>
+</html>
